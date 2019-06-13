@@ -23,6 +23,7 @@ class LikerWidget {
     }
     likerItems(items){
         this.listEl.innerHTML='';
+        let indexItem = 0
         for (const item of this.items) {
             const el = document.createElement('div');
             el.innerHTML = `
@@ -44,22 +45,26 @@ class LikerWidget {
             });
             const likerMinus = el.querySelector('[data-action=minusLiker]');
             likerMinus.addEventListener('click',()=>{
-
                 item.like = item.like-1
+                console.log('like',item.like<-9,item.like,indexItem)
+                if (item.like<-9)
+                    this.removeItem(indexItem)
                 this.onFilter();
                 this.likerItems(this.items);
-                this.bumMassiv()
             });
-
             this.listEl.appendChild(el);
+            indexItem++;
         }
     }
     onFilter(){
         this.items = this.items.sort((a,b) => {
-            console.log('filter',a,b )
+
             return b.like-a.like
        });
 
+    }
+    removeItem(index){
+        this.items.splice(index-1,1)
     }
     // bumMassiv(){
     //     this.items = this.items.splice(o => o.like <= -10)
