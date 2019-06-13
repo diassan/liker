@@ -22,6 +22,7 @@ class LikerWidget {
         //this.likerItems(items);
     }
     likerItems(items){
+        this.listEl.innerHTML='';
         for (const item of this.items) {
             const el = document.createElement('div');
             el.innerHTML = `
@@ -37,17 +38,19 @@ class LikerWidget {
                 console.log(this,item )
 
                 item.like = item.like+1;
+                this.likerItems(this.items);
 
             });
             const likerMinus = el.querySelector('[data-action=minusLiker]');
             likerMinus.addEventListener('click',()=>{
 
                 item.like = item.like-1
+                this.likerItems(this.items);
             });
 
             this.listEl.appendChild(el);
         }
-        this.getTotal()
+        //this.getTotal()
     }
 
 };
