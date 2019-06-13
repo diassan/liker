@@ -20,5 +20,6 @@ export class MemManager {
     getLike(){
         return this.items.reduce((acc,val) => acc + val.like,0)
     }
+    onFilter
 
 }

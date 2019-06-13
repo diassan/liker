@@ -38,6 +38,7 @@ class LikerWidget {
                 console.log(this,item )
 
                 item.like = item.like+1;
+                this.onFilter()
                 this.likerItems(this.items);
 
             });
@@ -45,13 +46,25 @@ class LikerWidget {
             likerMinus.addEventListener('click',()=>{
 
                 item.like = item.like-1
+                this.onFilter();
                 this.likerItems(this.items);
+                this.bumMassiv()
             });
 
             this.listEl.appendChild(el);
         }
-        //this.getTotal()
     }
+    onFilter(){
+        this.items = this.items.sort((a,b) => {
+            console.log('filter',a,b )
+            return b.like-a.like
+       });
+
+    }
+    // bumMassiv(){
+    //     this.items = this.items.splice(o => o.like <= -10)
+    //     return this.items
+    // };
 
 };
 
